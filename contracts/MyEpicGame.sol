@@ -1,30 +1,51 @@
 // SPDX-License-Identifier: UNLICENSED
 
-// specifies that the source code is written for Solidity version 0.8.0
-// insures that the contract is not compatible with a new(breaking) compiler version,
-// were it could behave different.
-
-// pragma keyword is used to enable certain compiler features or checks
-// a pragma directive is always local to a source file, so you have to add them to all your files
-// if you want to enable it in your whole project
-pragma solidity ^0.8.0;
-
-// similiar to JS, solidity supports import statement to help modularise you code
-// using Hardhat to do some console logs in our contract
 import "hardhat/console.sol";
 
-// in Solidity, contracts are a collection of code(its functions) and data(its state) that ressides
-// at a specific address on the Ethereum blockchain
 contract MyEpicGame {
-  constructor() {
-    console.log("This is my game contract");
-  }
+    // Define a new type(struct) with 6 fields
+    struct CharacterAttributes {
+        uint256 characterIndex;
+        string name;
+        string imageURI;
+        uint256 hp;
+        uint256 maxHp;
+        uint256 attackDamage;
+    }
+
+    // Create an array that will hold the default character data
+    // Help for after minting when you want to know things like HP, AD, etc
+    CharacterAttributes[] defaultCharacters;
+
+    // constructor that holds data to be passed into contract at initialization
+    // These values get passed in from run.js
+    constructor(
+        string[] memory characterNames,
+        string[] memory characterImageURIs,
+        uint256[] memory charcterHp,
+        uint256[] memory characterAttackDmg
+    ) {
+        // Loop through all the characters, and save their values in the contract so
+        // we can use them later when we mint our NFTs.
+        for (uint256 i = 0; i < characterNames.length; i += 1) {
+            defaultCharacters.push(
+                CharacterAttributes({
+                    characterIndex: i,
+                    name: characterNames[i],
+                    imageURI: characterImageURIs[i],
+                    hp: characterHp[i],
+                    maxHp: characterHp[i],
+                    attackDamage: characterAttackDmg[i]
+                })
+            );
+
+            CharacterAttributes memory c = deafaultCharacters[i];
+            console.log(
+                "Done initilaiazing %s w/ HP %s, img %s",
+                c.name,
+                c.hp,
+                c.imageURI
+            );
+        }
+    }
 }
-
-// MyEpicGame is simple smart contract
-// To understand how it works we need to:
-// 1. Compile it
-// 2. Deploy it to the local blockchain
-// 3. Once it's there, that console.log will run
-
-// The objectives above are achieved using a node script in scripts/run.js
