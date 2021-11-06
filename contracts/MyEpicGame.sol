@@ -21,3 +21,10 @@ contract MyEpicGame {
   }
 }
 
+// MyEpicGame is simple smart contract
+// To understand how it works we need to:
+// 1. Compile it
+// 2. Deploy it to the local blockchain
+// 3. Once it's there, that console.log will run
+
+// The objectives above are achieved using a node script in scripts/run.js
