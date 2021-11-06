@@ -3,10 +3,10 @@ const main = async () => {
   // under the 'artifacts' directory
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame')
 
-  // Hardhat creates a local Ethereum network, just for this project
+  // Hardhat creates a local Ethereum network, just for this project.
   // After script completes, it'll destroy that local network. That means
-  // every time you run the contract, it'll be a fresh blockchain
-  // Its almost like refreshing your local server every time so you start from a clean slate
+  // every time you run the contract, it'll be a fresh blockchain.
+  // Its almost like refreshing your local server every time so you start from a clean slate.
   const gameContract = await gameContractFactory.deploy();
 
   // Waits for the contract to be mined and deployed to our local blockchain
@@ -15,7 +15,7 @@ const main = async () => {
   await gameContract.deployed();
 
   // once deployed, gameContract.address gives us the address of the deployed contract
-  // This address is how actually find the contract on the blockchain
+  // This address is how you find the contract on the blockchain.
   // Since we are deploying this contract on a local blockchain, only this contract will be on that blockchain
   console.log("Contract deployed to:", gameContract.address);
 }
