@@ -22,7 +22,7 @@ contract MyEpicGame {
     constructor(
         string[] memory characterNames,
         string[] memory characterImageURIs,
-        uint256[] memory charcterHp,
+        uint256[] memory characterHp,
         uint256[] memory characterAttackDmg
     ) {
         // Loop through all the characters, and save their values in the contract so
