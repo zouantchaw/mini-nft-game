@@ -1,5 +1,5 @@
 const main = async () => {
-  const gameContractFactory = await hre.ethers.gameContractFactory('MyEpicGame');
+  const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
     ["Mendy", "Mbappe", "Salah"], // Names
     ["https://www.si.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc2MzAzOTE2NTc1NjMwNTA5/edouard-mendy-chelsea-gk.jpghttps://i.imgur.com/pKd5Sdk.png", // Images
