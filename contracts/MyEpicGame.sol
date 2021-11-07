@@ -39,7 +39,7 @@ contract MyEpicGame {
                 })
             );
 
-            CharacterAttributes memory c = deafaultCharacters[i];
+            CharacterAttributes memory c = defaultCharacters[i];
             console.log(
                 "Done initilaiazing %s w/ HP %s, img %s",
                 c.name,
