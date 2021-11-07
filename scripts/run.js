@@ -1,24 +1,16 @@
 const main = async () => {
-  // compiles MyEpicGame contract and generates the necessary files needed to work w/ contract
-  // under the 'artifacts' directory
-  const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame')
-
-  // Hardhat creates a local Ethereum network, just for this project.
-  // After script completes, it'll destroy that local network. That means
-  // every time you run the contract, it'll be a fresh blockchain.
-  // Its almost like refreshing your local server every time so you start from a clean slate.
-  const gameContract = await gameContractFactory.deploy();
-
-  // Waits for the contract to be mined and deployed to our local blockchain
-  // Hardhat creates fake "miners" on our machine, to try its best to imitate the actual blockchain
-  // constructor runs when contract is fully deployed
+  const gameContractFactory = await hre.ethers.gameContractFactory('MyEpicGame');
+  const gameContract = await gameContractFactory.deploy(
+    ["Mendy", "Mbappe", "Salah"], // Names
+    ["https://www.si.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc2MzAzOTE2NTc1NjMwNTA5/edouard-mendy-chelsea-gk.jpghttps://i.imgur.com/pKd5Sdk.png", // Images
+    "https://static.straitstimes.com.sg/s3fs-public/styles/article_pictrure_780x520_/public/articles/2021/06/29/af_mbappe_2906.jpg?itok=gTAQjEbU&timestamp=1624949805", 
+    "https://img2.chinadaily.com.cn/images/201804/16/5ad3f9d6a3105cdce0a2e43a.jpeg"],
+    [200, 400, 600], // HP values
+    [200, 100, 50] // Attack damage
+  );
   await gameContract.deployed();
-
-  // once deployed, gameContract.address gives us the address of the deployed contract
-  // This address is how you find the contract on the blockchain.
-  // Since we are deploying this contract on a local blockchain, only this contract will be on that blockchain
   console.log("Contract deployed to:", gameContract.address);
-}
+};
 
 const runMain = async () => {
   try {
@@ -26,8 +18,8 @@ const runMain = async () => {
     process.exit(0);
   } catch (error) {
     console.log(error);
-    process.exit(1)
+    process.exit(1);
   }
-};
+}
 
-runMain();
+runMain()
