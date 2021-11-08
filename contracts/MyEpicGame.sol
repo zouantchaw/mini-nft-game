@@ -45,7 +45,7 @@ contract MyEpicGame is ERC721 {
         string[] memory characterImageURIs,
         uint256[] memory characterHp,
         uint256[] memory characterAttackDmg
-    ) {
+    ) ERC721("Jogas", "JOGA") {
         // Loop through all the characters, and save their values in the contract so
         // we can use them later when we mint our NFTs.
         for (uint256 i = 0; i < characterNames.length; i += 1) {
@@ -68,5 +68,8 @@ contract MyEpicGame is ERC721 {
                 c.imageURI
             );
         }
+
+        // Increment tokenIds so that the first NFT has an ID of 1.
+        _tokenIds.increment();
     }
 }
