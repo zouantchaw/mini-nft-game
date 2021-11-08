@@ -135,13 +135,14 @@ contract MyEpicGame is ERC721 {
         ];
 
         string memory strHp = Strings.toString(charAttributes.hp);
-        string memory strMaxHp = Strings.toString(charAttributes.MaxHp);
+        string memory strMaxHp = Strings.toString(charAttributes.maxHp);
         string memory strAttackDamage = Strings.toString(
             charAttributes.attackDamage
         );
 
         // Pack/Structure the data in 'json' variable
         // abi.encodePacked combines strings, enables us to modify attributes
+        // Formats json file and then encodes it in Base64
         string memory json = Base64.encode(
             bytes(
                 string(
@@ -165,6 +166,7 @@ contract MyEpicGame is ERC721 {
         );
 
         string memory output = string(
+            // Lets browser know how to read the encode string we're passing it.
             abi.encodePacked("data:application/json;base64,", json)
         );
         return output;
