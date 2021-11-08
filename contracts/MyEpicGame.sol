@@ -70,21 +70,32 @@ contract MyEpicGame is ERC721 {
         }
 
         // Increment tokenIds so that the first NFT has an ID of 1.
+        // Why? good solution if you want to avoid 0's
         _tokenIds.increment();
     }
 
-    // Users would be able to hit this function and get their NFT based on the
-    // chracterId they pass in.
+    // mintCharacterNFt is where the minting takes place
+    // mintCharacterNFT takes in _characterIndex as an argument, why?
+    // Players need to be able to tell the contract which character they want.
     function mintCharacterNFT(uint256 _characterIndex) external {
-        // Get current tokenId
-        // Starts at 1 since we incremented in the constructor
+        // newItemId stores the id of the NFT
+        // * Each NFT is unique, that uniqueness is achieved by giving
+        // each token a unique ID... aka a basic counter.
+        // _tokenIds.current() returns 1 since we incremented from zero in the constructor
         uint256 newItemId = _tokenIds.current();
 
-        //Magical function!
+        // Magical function!
         // Assigns the tokenId to the caller's wallet address.
+        // Basically translates to: "mint the NFT with id newItemId to the user
+        // with address msg.sender".
+        // msg.sender is a variable solidity provides that easily gives us access
+        // to the public address of the person calling the contract
+        // This is a SUPER SECURE way to get the users public address
+        // Since public addresses are "public" msg.sender is the most secure way to access that address
         _safeMint(msg.sender, newItemId);
 
-        // Map the tokenId => their character attributes
+        // nftHolderAttributes maps the tokenId of the NFT to a struct of CharacterAttributes
+        // This enables easy value updates related to the Players NFT.
         nftHolderAttributes[newItemId] = CharacterAttributes({
             characterIndex: _characterIndex,
             name: defaultCharacters[_characterIndex].name,
@@ -100,10 +111,12 @@ contract MyEpicGame is ERC721 {
             _characterIndex
         );
 
-        // Easy way to see who owns what NFT
-        nftHolders[msgmsg.sender] = newItemId;
+        // map the users public wallet address to the NFTs tokenID.
+        // Will help keep track of who owns which NFTs.
+        nftHolders[msg.sender] = newItemId;
 
-        // Increment the tokenId for the next person that uses it.
+        // After the NFt is minted, increment tokenIds using .increment() from OpenZepplin
+        // Ensures that the next time an NFT is minted, it'll have a diffenet tokenIds.
         _tokenIds.increment();
     }
 }
