@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 import "hardhat/console.sol";
 
-// inherirts from ERC721: standard NFT contract!
+// inherit OpenZeppelin contract using 'is ERC721' when contract is declared
 contract MyEpicGame is ERC721 {
     // Define a new type(struct) with 6 fields
     struct CharacterAttributes {
@@ -75,7 +75,7 @@ contract MyEpicGame is ERC721 {
 
     // Users would be able to hit this function and get their NFT based on the
     // chracterId they pass in.
-    function mintCHracterNFT(uint256 _characterIndex) external {
+    function mintCharacterNFT(uint256 _characterIndex) external {
         // Get current tokenId
         // Starts at 1 since we incremented in the constructor
         uint256 newItemId = _tokenIds.current();
