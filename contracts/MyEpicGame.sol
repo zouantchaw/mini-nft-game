@@ -31,11 +31,11 @@ contract MyEpicGame is ERC721 {
     // Help for after minting when you want to know things like HP, AD, etc
     CharacterAttributes[] defaultCharacters;
 
-    // Create a mapping from the nft's tokenId => that NFTs attributes
+    // initialize two state variables which act like permanent global variables on the contract.
+    // nftHolderAttributes will store the state of the palyers NFTs
+    // map the NFTs id to a CharacterAttributes struct
     mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
-
-    // Create a mapping from an address => the NFTs tokenId.
-    // Stores the owner of the NFT so it can be refrenced later.
+    // nftHolders maps the address of a user to the ID of the NFT they own.
     mapping(address => uint256) public nftHolders;
 
     // constructor that holds data to be passed into contract at initialization
@@ -104,5 +104,6 @@ contract MyEpicGame is ERC721 {
         nftHolders[msgmsg.sender] = newItemId;
 
         // Increment the tokenId for the next person that uses it.
+        _tokenIds.increment();
     }
 }
