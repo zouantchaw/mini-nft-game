@@ -72,4 +72,37 @@ contract MyEpicGame is ERC721 {
         // Increment tokenIds so that the first NFT has an ID of 1.
         _tokenIds.increment();
     }
+
+    // Users would be able to hit this function and get their NFT based on the
+    // chracterId they pass in.
+    function mintCHracterNFT(uint256 _characterIndex) external {
+        // Get current tokenId
+        // Starts at 1 since we incremented in the constructor
+        uint256 newItemId = _tokenIds.current();
+
+        //Magical function!
+        // Assigns the tokenId to the caller's wallet address.
+        _safeMint(msg.sender, newItemId);
+
+        // Map the tokenId => their character attributes
+        nftHolderAttributes[newItemId] = CharacterAttributes({
+            characterIndex: _characterIndex,
+            name: defaultCharacters[_characterIndex].name,
+            imageURI: defaultCharacters[_characterIndex].imageURI,
+            hp: defaultCharacters[_characterIndex].hp,
+            maxHp: defaultCharacters[_characterIndex].hp,
+            attackDamage: defaultCharacters[_characterIndex].attackDamage
+        });
+
+        console.log(
+            "Minted NFT w/ tokenId %s and characterIndex %s",
+            newItemId,
+            _characterIndex
+        );
+
+        // Easy way to see who owns what NFT
+        nftHolders[msgmsg.sender] = newItemId;
+
+        // Increment the tokenId for the next person that uses it.
+    }
 }
