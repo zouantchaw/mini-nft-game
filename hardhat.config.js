@@ -20,8 +20,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   solidity: '0.8.0',
   networks: {
     rinkeby: {
-      url: '',
-      accounts: ['YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY'],
+      url: 'https://eth-rinkeby.alchemyapi.io/v2/-fizLEBV44Xj0BLjIxz5y-nvoKre1wsC',
+      accounts: [''],
     },
   },
 };
