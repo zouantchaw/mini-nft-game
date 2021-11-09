@@ -6,7 +6,11 @@ const main = async () => {
     "https://static.straitstimes.com.sg/s3fs-public/styles/article_pictrure_780x520_/public/articles/2021/06/29/af_mbappe_2906.jpg?itok=gTAQjEbU&timestamp=1624949805", 
     "https://img2.chinadaily.com.cn/images/201804/16/5ad3f9d6a3105cdce0a2e43a.jpeg"],
     [200, 400, 600], // HP values
-    [200, 100, 50] // Attack damage
+    [200, 100, 50], // Attack damage
+    "Angry Pep", // Boss Name
+    "https://drive.google.com/file/d/1Q_1W2ZyuFkpgkNW5K9S1gEi-wtIlsQ03/view?usp=sharing", // Boss Image
+    10000, // Boss hp
+    50 // Boss attack damage
   );
   await gameContract.deployed();
   console.log("Contract deployed to:", gameContract.address);

@@ -40,13 +40,28 @@ contract MyEpicGame is ERC721 {
     // nftHolders maps the address of a user to the ID of the NFT they own.
     mapping(address => uint256) public nftHolders;
 
+    // struct that holds the boss data
+    struct BigBoss {
+        string name;
+        string imageURI;
+        uint256 hp;
+        uint256 maxHp;
+        uint256 attackDamage;
+    }
+    // bigBoss variable will hold the boss so it can be referenced in different functions.
+    BigBoss public bigBoss;
+
     // constructor that holds data to be passed into contract at initialization
     // These values get passed in from run.js
     constructor(
         string[] memory characterNames,
         string[] memory characterImageURIs,
         uint256[] memory characterHp,
-        uint256[] memory characterAttackDmg
+        uint256[] memory characterAttackDmg,
+        string memory bossName,
+        string memory bossImageURI,
+        uint256 bossHp,
+        uint256 bossAttackDamage
     ) ERC721("Jogas", "JOGA") {
         // Loop through all the characters, and save their values in the contract so
         // we can use them later when we mint our NFTs.
@@ -70,6 +85,22 @@ contract MyEpicGame is ERC721 {
                 c.imageURI
             );
         }
+
+        // Initialize the boss. Save it to global 'bigBoss' state variable
+        bigBoss = BigBoss({
+            name: bossName,
+            imageURI: bossImageURI,
+            hp: bossHp,
+            maxHp: bossHp,
+            attackDamage: bossAttackDamage
+        });
+
+        console.log(
+            "Done initializing boss %s w/ HP %s, img %s",
+            bigBoss.name,
+            bigBoss.hp,
+            bigBoss.imageURI
+        );
 
         // Increment tokenIds so that the first NFT has an ID of 1.
         // Why? good solution if you want to avoid 0's
