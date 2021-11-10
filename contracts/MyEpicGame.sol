@@ -73,7 +73,7 @@ contract MyEpicGame is ERC721 {
         string memory bossImageURI,
         uint256 bossHp,
         uint256 bossAttackDamage
-    ) ERC721("Jogas", "JOGA") {
+    ) ERC721("Futbol", "FUT") {
         // Loop through all the characters, and save their values in the contract so
         // we can use them later when we mint our NFTs.
         for (uint256 i = 0; i < characterNames.length; i += 1) {
