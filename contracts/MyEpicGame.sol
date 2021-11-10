@@ -114,7 +114,7 @@ contract MyEpicGame is ERC721 {
     {
         // Get the tokenId of the user's character NFT
         uint256 userNftTokenId = nftHolders[msg.sender];
-        // If the iser has a tokenId in the map, return their character
+        // If the user has a tokenId in the map, return their character
         // Why need to check if userNftTokenId > 0 ?
         // Bc there's no way to check if a key in a map exists
         // This is solved by increasing '_tokenIds' in the constructor so that no one is allowed
@@ -126,6 +126,15 @@ contract MyEpicGame is ERC721 {
             CharacterAttributes memory emptyStruct;
             return emptyStruct;
         }
+    }
+
+    function getAllDefaultCharacters()
+        public
+        view
+        returns (CharacterAttributes[] memory)
+    {
+        // Return all default characters
+        return defaultCharacters;
     }
 
     function attackBoss() public {
