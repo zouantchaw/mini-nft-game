@@ -107,6 +107,35 @@ contract MyEpicGame is ERC721 {
         _tokenIds.increment();
     }
 
+    function attackBoss() public {
+        // 1. Get the state of the player's NFT.
+        // Get the NFTs tokenId that players owns
+        uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+        // Get the players attributes
+        CharacterAttributes storage player = nftHolderAttributes[
+            nftTokenIdOfPlayer
+        ];
+        console.log(
+            "\nPlayer w/ character %s about to attack. Has %s HP abd %s AD",
+            player.name,
+            player.hp,
+            player.attackDamage
+        );
+        console.log(
+            "Boss %s has %s HP and %s AD",
+            bigBoss.name,
+            bigBoss.hp,
+            bigBoss.attackDamage
+        );
+
+        // 2. Make sure the player has more than 0 HP.
+        require(player.hp > 0, "Error: character must have HP to attack boss.");
+
+        // 3. Make sure the boss has more than 0 HP.
+        // Allow player to attack the boss.
+        // Allow the boss to attack the player.
+    }
+
     // mintCharacterNFt is where the minting takes place
     // mintCharacterNFT takes in _characterIndex as an argument, why?
     // Players need to be able to tell the contract which character they want.

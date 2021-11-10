@@ -19,6 +19,9 @@ const main = async () => {
   txn = await gameContract.mintCharacterNFT(2);
   await txn.wait()
 
+  txn = await gameContract.attackBoss();
+  await txn.wait();
+
   // Get the value of the NFTs URI.
   // tokenUri is a function on every NFT that return actual data attached to the NFT.
   let returnedTokenUri = await gameContract.tokenURI(1);
