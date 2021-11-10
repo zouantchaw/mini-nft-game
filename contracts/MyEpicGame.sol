@@ -132,7 +132,18 @@ contract MyEpicGame is ERC721 {
         require(player.hp > 0, "Error: character must have HP to attack boss.");
 
         // 3. Make sure the boss has more than 0 HP.
-        // Allow player to attack the boss.
+        require(player.hp > 0, "Error: boss must have HP to attack boss.");
+
+        // 4. Allow player to attack the boss.
+        // Check if the boss will have its HP reduced to below 0 based on the players attack damage.
+        // ex. if bigBoss.hp = 10 and player.attackDamage = 30 then we know boss will have its HP reduced below 0
+        // which would ause an error!
+        if (bigBoss.hp < player.attackDamage) {
+            bigBoss.hp = 0;
+        } else {
+            // Otherwise, reduce the the boss's HP based on how much damage the player does.
+            bigBoss.hp = bigBoss.hp - player.attackDamage;
+        }
         // Allow the boss to attack the player.
     }
 
