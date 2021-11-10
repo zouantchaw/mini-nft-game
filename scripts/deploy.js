@@ -12,20 +12,10 @@ const main = async () => {
     10000, // Boss hp
     50 // Boss attack damage
   );
+
   await gameContract.deployed();
   console.log("Contract deployed to:", gameContract.address);
-
-  let txn;
-  txn = await gameContract.mintCharacterNFT(2);
-  await txn.wait()
-
-  txn = await gameContract.attackBoss();
-  await txn.wait();
-
-  txn = await gameContract.attackBoss();
-  await txn.wait();
-
-  console.log("Done!")
+  
 };
 
 const runMain = async () => {
