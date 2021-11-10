@@ -40,6 +40,17 @@ contract MyEpicGame is ERC721 {
     // nftHolders maps the address of a user to the ID of the NFT they own.
     mapping(address => uint256) public nftHolders;
 
+    // *Events are like webhooks that the client can listen to.
+    // Event that fires when NFT is done minting for user
+    event CharacterNFTMinted(
+        address sender,
+        uint256 tokenId,
+        uint256 characterIndex
+    );
+    // Event that fires when boss is succesfully attacked
+    // Returns the boss's new hp and the player's new hp
+    event AttackComplete(uint256 newBossHp, uint256 newPlayerHp);
+
     // struct that holds the boss data
     struct BigBoss {
         string name;
@@ -236,6 +247,9 @@ contract MyEpicGame is ERC721 {
         // After the NFt is minted, increment tokenIds using .increment() from OpenZepplin
         // Ensures that the next time an NFT is minted, it'll have a diffenet tokenIds.
         _tokenIds.increment();
+
+        // Fire CharacterNFTMinted event when minting is complete
+        emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
     }
 
     function tokenURI(uint256 _tokenId)
