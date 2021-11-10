@@ -107,6 +107,27 @@ contract MyEpicGame is ERC721 {
         _tokenIds.increment();
     }
 
+    function checkIfUserHasNFT()
+        public
+        view
+        returns (CharacterAttributes memory)
+    {
+        // Get the tokenId of the user's character NFT
+        uint256 userNftTokenId = nftHolders[msg.sender];
+        // If the iser has a tokenId in the map, return their character
+        // Why need to check if userNftTokenId > 0 ?
+        // Bc there's no way to check if a key in a map exists
+        // This is solved by increasing '_tokenIds' in the constructor so that no one is allowed
+        // to have tokenId 0.
+        if (userNftTokenId > 0) {
+            return nftHolderAttributes[userNftTokenId];
+        } else {
+            // Otherwise, return an empty character.
+            CharacterAttributes memory emptyStruct;
+            return emptyStruct;
+        }
+    }
+
     function attackBoss() public {
         // 1. Get the state of the player's NFT.
         // Get the NFTs tokenId that players owns
