@@ -137,6 +137,10 @@ contract MyEpicGame is ERC721 {
         return defaultCharacters;
     }
 
+    function getBigBoss() public view returns (BigBoss memory) {
+        return bigBoss;
+    }
+
     function attackBoss() public {
         // 1. Get the state of the player's NFT.
         // Get the NFTs tokenId that players owns
