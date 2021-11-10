@@ -144,7 +144,18 @@ contract MyEpicGame is ERC721 {
             // Otherwise, reduce the the boss's HP based on how much damage the player does.
             bigBoss.hp = bigBoss.hp - player.attackDamage;
         }
-        // Allow the boss to attack the player.
+
+        // 5. Allow the boss to attack the player.
+        // Check if he player will have its HP reduced to below 0 based on the players attack damage.
+        if (player.hp < bigBoss.attackDamage) {
+            player.hp = 0;
+        } else {
+            // Otherwise, reduce the players HP based on how much damage the player does.
+            player.hp = player.hp - bigBoss.attackDamage;
+        }
+
+        console.log("Player attacked boss. New boss hp: %s", bigBoss.hp);
+        console.log("Boss attacked player. New player hp: %s", player.hp);
     }
 
     // mintCharacterNFt is where the minting takes place
