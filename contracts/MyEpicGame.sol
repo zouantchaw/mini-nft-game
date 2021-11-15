@@ -281,7 +281,7 @@ contract MyEpicGame is ERC721 {
                         charAttributes.name,
                         " -- NFT #: ",
                         Strings.toString(_tokenId),
-                        '", "description": "This is an NFT that lets people play in the game Metaverse Slayer!", "image": "',
+                        '", "description": "This is an NFT that lets people play in the game Angry Pep!", "image": "',
                         charAttributes.imageURI,
                         '", "attributes": [ { "trait_type": "Health Points", "value": ',
                         strHp,
