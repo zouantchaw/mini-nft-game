@@ -2,13 +2,13 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
     ["Haland", "Mbappe", "Salah"], // Names
-    ["https://cloudflare-ipfs.com/ipfs/QmZGp5n319GzGoqj8s5i57EWGni3119ZTBpbPVPrDHyNdQ", // Images
-    "https://cloudflare-ipfs.com/ipfs/QmUf7obvfandnYoCcoWs8ovSoFLGLJBYfSrRsbvYxKgkef", 
-    "https://cloudflare-ipfs.com/ipfs/QmRPPRngqV1bUb1r88SS5S6VcGpatSGwEB3ic1vBRr2vx5"],
+    ["QmZGp5n319GzGoqj8s5i57EWGni3119ZTBpbPVPrDHyNdQ", // Images
+    "QmUf7obvfandnYoCcoWs8ovSoFLGLJBYfSrRsbvYxKgkef", 
+    "QmRPPRngqV1bUb1r88SS5S6VcGpatSGwEB3ic1vBRr2vx5"],
     [200, 400, 600], // HP values
     [200, 100, 50], // Attack damage
     "Angry Pep", // Boss Name
-    "https://cloudflare-ipfs.com/ipfs/QmeuqxMiJpk3guV6fv4wzbRiQAadnNP5tDYuZkU3W4gZGz", // Boss Image
+    "https://dynaimage.cdn.cnn.com/cnn/q_auto,h_600/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F151026214217-22-what-a-shot-1027.jpg", // Boss Image
     10000, // Boss hp
     50 // Boss attack damage
   );
